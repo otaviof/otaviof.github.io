@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  
+  
+  <title>Silver-Horizon</title>
+  <meta name="description" content="Personal blog to share opinions and chat about tech stuff. Have fun!">
+  
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://otaviof.github.io/">
+  
+  
+  <link rel="alternate" type="application/rss+xml" title="Silver-Horizon" href="https://otaviof.github.io/feed.xml">
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/images/silver-horizon.png">
+
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="otaviof">
+  <meta name="twitter:title" content="Silver-Horizon">
+  <meta name="twitter:description" content="Personal blog to share opinions and chat about tech stuff. Have fun!">
+  
+    <meta name="twitter:creator" content="otaviof">
+  
+  
+
+  <script type="text/javascript">
+  WebFontConfig = {
+    google: { families: [ 'Bitter:400,700,400italic:latin' ] }
+  };
+  (function() {
+    var wf = document.createElement('script');
+    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+  })();
+</script>
+
+  
+  <!-- Google Analytics -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-111744883-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/"><img src="/images/silver-horizon.png" alt="Blog's avatar image." /></a>
+
+    <a class="site-title" href="/">Silver-Horizon</a>
+
+    <nav class="site-nav">
+      
+        
+        <a class="page-link" href="/about/">About</a>
+      
+        
+        <a class="page-link" href="/posts/">Posts</a>
+      
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="home">
+
+  
+
+  
+
+  <ul class="post-list">
+    
+      
+      
+
+      <li>
+        <header class="post-header">
+          <h1 class="post-title">
+            <a class="post-link" href="/2017/12/28/cloud-native-conceptually/">Cloud Native Conceptually</a>
+          </h1>
+
+          <p class="post-meta">Dec 28, 2017 •
+  
+    
+    
+      
+    
+      
+    
+      
+        <a href="/categories/cloud-native/">cloud-native</a>
+      
+    
+  
+
+
+ •
+  
+    
+    
+      
+        <a href="/tags/conceptual/">conceptual</a>,
+      
+    
+      
+    
+      
+    
+  
+    
+    
+      
+    
+      
+        <a href="/tags/opinion/">opinion</a>
+      
+    
+      
+    
+  
+
+</p>
+        </header>
+
+        <div class="post-content">
+          <p><img src="/images/posts/2017/12/keep_cloud_native_weird.png" alt="Keep Cloud-Native Weird!" class="center-image" /></p>
+
+<p>Before we can get started writing a, so called, <em>cloud-native</em> applications we need to understand what this term actually means. That is a utterly important matter if we want to be effective in the way we address a certain technology, this blog post tries establish the ground rules.</p>
+
+<p>The simplest way to explain <em>“cloud-native”</em> is to refer to an application that is ready to live in a Cloud and take the most of it. However, a few elements are more critical than others, when it comes to application workload in a public/private Cloud, which are:</p>
+
+<ul>
+  <li><a href="#State"><strong>State</strong></a>;</li>
+  <li><a href="#Runtime"><strong>Runtime</strong></a>;</li>
+</ul>
+
+<p>More can be found at the CNCF (Cloud Native Computing Foundation), please note the <a href="https://www.cncf.io/about/charter/">charter</a> for the areas of qualification.</p>
+
+<h2 id="state">State</h2>
+
+<p>On any cloud we will have disruptions in the underlying application infrastructure, needless to say that virtual machines will go down and maybe entire zones can vanish away, therefore the application landscape needs to be ready when it happens. When it comes to state, or in other words the actual data the application is dealing with, it needs to be stored <em>“outside”</em> of the application runtime where the backend is ready to resist failures and deliver desired durability and consistency, so the application itself does not need to concern about the data plane.</p>
+
+<p>More elements can be included as the application state which are not the actual data directly, namely logging and performance/telemetry metrics. All the surrounding elements that your application may need to be operational and monitored, those elements follow the same rule, they also need to be stored <em>“outside”</em>. Hence the application itself is designed to be stateless, all the stateful stores will be plugged during bootstrap. This design principle brings a number of positive side effects, for instance, testing the application is a much simpler task now, so CI/QA activities tends to be simplified.</p>
+
+<h2 id="runtime">Runtime</h2>
+
+<p>Another challenge that we face is the application runtime contracts, every language ecosystem will depend in a different approach, and deeper in the application stack we also need to consider dependencies, configuration, operational system requirements and more. In other words, the deliverables of a application executable are more than compile/prepared files, this context is extend much further.</p>
+
+<p>Therefore alternatives like <em>containerization</em> are valid to address this limitation. The container approach combines application related activities that belong together, the container is the application’s package and also contains tha operational system parts that it requires to be executed against, thus it creates a more practical separation of concerns when it comes to developing and executing a application. This mindset is also beneficial for developers, QA and all other involved areas.</p>
+
+<p>The return of investment of splitting the application and infrastructure runtime requirements provide a clear common ground for parallel work, since one team can prepare a new environment or cloud, and the other team can be busy writing the applications, at the end of the day both teams will be assured regarding runtime compatibility. Furthermore, it’s usual to establish more contracts for more areas in the application landscape, like configuration, log shipping, functional/performance telemetry, rinse and repeat.</p>
+
+<h3 id="orchestration">Orchestration</h3>
+
+<p>After the investments on <em>stateless</em> and <em>runtime standardization</em>, we create a perfect ground for automated orchestration. This role is much simplified with the ability of spin up or down instances without functional impact, and being free to run this application almost anywhere, since it relies in a common runtime.</p>
+
+<p>Furthermore, orchestration can take care of a good chunk of the operational load, making sure applications are available to receive requests, handling the underlying cloud configuration to reflect the application landscape desired state, also playing roles during the deployment phase. To orchestrate instances it relies on functional monitoring endpoints in the application itself, therefore it often moves the monitoring related actions to the beginning of the software development process. For instance, the ground rules to execute a given application in the platform consists on exposing monitoring endpoints, so we move this action as early as possible in the development life-cycle.</p>
+
+<h2 id="related-aspects">Related Aspects</h2>
+
+<p>Besides of <a href="#State"><em>State</em></a> and <a href="#Runtime"><em>Runtime</em></a> we also need to consider other aspects. Those will mostly consist of <em>“convention over configuration”</em> and other practices that we are already familiar with, however on this blog post we approach them with the cloud-native initiative in mind.</p>
+
+<h3 id="detaching-vs-reuse">Detaching vs. Reuse</h3>
+
+<p>Binding required services during runtime also means a change in the way the application is configured, that’s a kind of obvious thing to say, but it works as a good example of how this mindset contaminates the whole <a href="https://github.com/cncf/landscape">ecosystem of cloud-native tooling</a>. And will certainly contaminate the software you write for this kind of environment.</p>
+
+<p>The mindset is useful in order to be more effective in how we handle application life-cycle. The same components can be instantiated with different configuration to perform different roles in the infrastructure, rather than a single instance performing multiple roles, to give a quick example.</p>
+
+<p>The drive for <em>componentization</em> also drives the need of version control individual elements of the application life-cycle, on which we split source-code, configuration and releases into <em>their own swimming-lanes</em>, providing the ability of individually roll-back and compose, where this “way-of-working” has being coined by <a href="https://12factor.net">12factors.net</a> and others. Consequently, to aid applications to consume common infrastructure services, it’s usual giving them a common set of libraries to act as the application/microservice <em>chassis</em>, to embed common elements automatically instead of having this code/configuration spread over multiple projects. The approach is what <a href="https://github.com/go-kit/kit/"><code class="highlighter-rouge">go-kit</code></a> provides for Go based microservices.</p>
+
+<h3 id="what-about-devops">What About <em>DevOps</em>?</h3>
+
+<p>A opinionated view about “DevOps”, in this context it would come as a consequence of a better split of activities and adding tooling like orchestrator to transform common platform activities more and more into API calls and highly automated tooling for end-users. Hence, a group of developers can very well be responsible for the functional health of production grade applications, mostly because for doing so it’s not anymore required to become a full-fledged sysadmin right away; while the conceptual part of the sysadmin work is ultimately important, the daily basis activities are being automated at a rather fast pace.</p>
+
+<p>For instance, let’s consider <a href="https://en.wikipedia.org/wiki/Managed_code">“managed-code”</a> products, like the <em>FaaS</em> (function-as-a-service) public cloud offerings. They already automate away all the “old-school” sysadmin activities, it already implies most of the practices described on this blog post.</p>
+
+<h3 id="fighting-the-waterfall">Fighting the “Waterfall”</h3>
+
+<p>I think that’s clear already for all of us, with actions like standardization of the infrastructure runtime, having more strict contracts for handling application related state, and binding configuration and other runtime requirements during application bootstrap, are all actions that move things forward to adopt a more agile software development workflow, actions that will also reflect on the operations perspective.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Therefore, there are reasons to adopt cloud native related approach beyond reaching different cloud providers, it more related to modernize the current application landscape in order to benefit from the latest best practices.</p>
+
+
+        </div>
+        
+      </li>
+    
+  </ul>
+
+  
+
+
+</div>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <p>
+      
+
+&copy; OF // <a href="https://otaviof.github.io/feed.xml">RSS</a>
+
+    </p>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
