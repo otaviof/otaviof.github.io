@@ -17,8 +17,10 @@ namespace :site do
   task publish: %i(generate) do
     sh <<-EOS
     cd #{TARGET_DIR} && \
-      git add . && git commit -m 'Update at #{Time.now}' && \
-      git push origin master
+      git add . && \
+      git commit -m 'Update at #{Time.now}' && \
+      git push origin master && \
+      cd -
     EOS
   end
 end
